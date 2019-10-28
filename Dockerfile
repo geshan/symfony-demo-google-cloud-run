@@ -21,6 +21,7 @@ RUN setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var && \
     setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var && \
     echo "Listen 8080" >> /etc/apache2/ports.conf && \
     mkdir -p /var/www/project/var/log/ && \
+    mkdir -p /var/www/project/var/cache/ && \
     chown -R www-data:www-data /var/www/  && \
     a2enmod rewrite && \
     php bin/console cache:clear --no-warmup && \
