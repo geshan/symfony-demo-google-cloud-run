@@ -15,6 +15,8 @@ WORKDIR /var/www/project
 ENV APP_ENV=prod
 ENV HTTPDUSER='www-data'
 
+EXPOSE 8080
+
 COPY docker/000-default.conf /etc/apache2/sites-available/
 COPY --from=build /app/vendor /var/www/project/vendor
 COPY . /var/www/project/
