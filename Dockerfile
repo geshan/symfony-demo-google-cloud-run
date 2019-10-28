@@ -15,6 +15,8 @@ WORKDIR /var/www/project
 ENV APP_ENV=prod
 ENV HTTPDUSER='www-data'
 
+EXPOSE 8080
+
 COPY docker/000-default.conf /etc/apache2/sites-available/
 COPY --from=build /app/vendor /var/www/project/vendor
 COPY . /var/www/project/
@@ -26,10 +28,10 @@ RUN setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var && \
     mkdir -p /var/www/project/var/cache/ && \
     usermod -u 1000 www-data &&\
     chown -R www-data:www-data /var/www/  && \
-    chmod -R 777 /var/www/project/var/log/ && \
-    chmod -R 777 /var/www/project/var/cache/ && \
-    a2enmod rewrite && \
-    php bin/console cache:clear --no-warmup && \
+    a2enmod rewrite
+USER www-data
+
+RUN php bin/console cache:clear --no-warmup && \
     php bin/console cache:warmup
 
 CMD ["apache2-foreground"]
