@@ -28,8 +28,10 @@ RUN setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX var && \
     chown -R www-data:www-data /var/www/  && \
     chmod -R 777 /var/www/project/var/log/ && \
     chmod -R 777 /var/www/project/var/cache/ && \
-    a2enmod rewrite && \
-    php bin/console cache:clear --no-warmup && \
+    a2enmod rewrite
+USER www-data
+
+RUN php bin/console cache:clear --no-warmup && \
     php bin/console cache:warmup
 
 CMD ["apache2-foreground"]
