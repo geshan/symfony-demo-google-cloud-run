@@ -2,7 +2,7 @@ Symfony Demo Application
 ========================
 
 The "Symfony Demo Application" is a reference application created to show how
-to develop applications following the [Symfony Best Practices](https://symfony.com/doc/current/best_practices/index.html). Original [Read me](https://github.com/symfony/demo)
+to develop applications following the [Symfony Best Practices](https://symfony.com/doc/current/best_practices/index.html). Original [Read me](https://github.com/symfony/demo). This repo is part of [Symfony on Google Cloud Run](https://geshan.com.np/blog/2019/11/how-to-run-symfony-on-google-cloud-run-with-the-demo-app-step-by-step-guide/) blog post.
 
 ## Run Locally with docker and docker-compose
 
